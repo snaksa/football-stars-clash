@@ -12,7 +12,9 @@ export default class Player {
     public position: string = '',
     public image: string = '',
     public value: string = '',
-    public url: string = ''
+    public url: string = '',
+    public teamName: string = '',
+    public teamLogo: string = ''
   ) {
     this.pk = `${Player.TYPE}#${this.id}`
     this.parsedValue = this.parseValue(value)
@@ -40,6 +42,12 @@ export default class Player {
       },
       url: {
         S: this.url
+      },
+      teamName: {
+        S: this.teamName
+      },
+      teamLogo: {
+        S: this.teamLogo
       }
     }
   }
@@ -51,8 +59,10 @@ export default class Player {
     const image = data?.image?.S ?? ''
     const value = data?.value?.S ?? ''
     const url = data?.url?.S ?? ''
+    const teamName = data?.teamName?.S ?? ''
+    const teamLogo = data?.teamLogo?.S ?? ''
 
-    return new Player(id, name, position, image, value, url)
+    return new Player(id, name, position, image, value, url, teamName, teamLogo)
   }
 
   private parseValue (value: string): number {
@@ -67,6 +77,8 @@ export default class Player {
       name: this.name,
       position: this.position,
       image: this.image,
+      teamName: this.teamName,
+      teamLogo: this.teamLogo,
       ...(includeValue ? { value: this.value } : {})
     }
   }
