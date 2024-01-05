@@ -8,6 +8,7 @@ interface LeagueButtonProps {
   alt: string;
   selected: boolean;
   onSelect: (id: string) => void;
+  inverted?: boolean;
 }
 
 export function LeagueButton({
@@ -16,12 +17,13 @@ export function LeagueButton({
   alt,
   selected,
   onSelect,
+  inverted = false,
 }: LeagueButtonProps): React.JSX.Element {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
   return (
-    <Stack alignItems="center">
+    <Stack alignItems="center" p={1}>
       <Box
         sx={{
           backgroundColor: theme.palette.primary.light,
@@ -42,7 +44,11 @@ export function LeagueButton({
           alt={alt}
           width={isMobile ? 40 : 60}
           height={isMobile ? 40 : 60}
-          style={{ filter: "grayscale(100%) contrast(1000%) invert(100%)" }}
+          style={{
+            filter:
+              "grayscale(100%) contrast(1000%)" +
+              (inverted ? " invert(100%)" : ""),
+          }}
         />
       </Box>
     </Stack>

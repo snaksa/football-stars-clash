@@ -25,15 +25,20 @@ export default function Home(): React.JSX.Element {
   const [selectedLeague, setSelectedLeague] =
     useState<string>("premier-league");
 
-  const onStartGame = async (leagueId: string) => {
-    setSelectedLeague(leagueId);
+  const onStartGame = async () => {
     setGameState(GameState.PLAYING);
   };
 
   const renderActiveScreen = () => {
     switch (gameState) {
       case GameState.START:
-        return <StartScreen onStart={onStartGame} />;
+        return (
+          <StartScreen
+            onStart={onStartGame}
+            selectedLeague={selectedLeague}
+            onSelectedLeagueChange={setSelectedLeague}
+          />
+        );
       case GameState.PLAYING:
       case GameState.GAME_OVER:
         return (

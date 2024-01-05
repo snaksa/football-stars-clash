@@ -12,7 +12,9 @@ import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
 import { LeagueButton } from "@/components/StartScreen/LeagueButton";
 
 interface StartScreenProps {
-  onStart: (leagueId: string) => void;
+  selectedLeague: string;
+  onSelectedLeagueChange: (leagueId: string) => void;
+  onStart: () => void;
 }
 
 const availableLeagues = [
@@ -20,20 +22,36 @@ const availableLeagues = [
     id: "premier-league",
     src: "/premier-league-logo.png",
     alt: "Premier League",
+    inverted: true,
   },
   {
     id: "primera-division",
     src: "/la-liga-logo.png",
     alt: "La Liga",
+    inverted: true,
+  },
+  {
+    id: "bundesliga",
+    src: "/bundesliga-logo.png",
+    alt: "Bundesliga",
+    inverted: true,
+  },
+  {
+    id: "serie-a",
+    src: "/serie-a-logo.png",
+    alt: "Serie A",
+    inverted: false,
   },
 ];
 
-export function StartScreen({ onStart }: StartScreenProps): React.JSX.Element {
+export function StartScreen({
+  selectedLeague,
+  onSelectedLeagueChange,
+  onStart,
+}: StartScreenProps): React.JSX.Element {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
 
-  const [selectedLeague, setSelectedLeague] =
-    React.useState<string>("premier-league");
   return (
     <MainWrapper>
       <Stack
@@ -85,8 +103,14 @@ export function StartScreen({ onStart }: StartScreenProps): React.JSX.Element {
         >
           <Typography variant="h5">Choose a League</Typography>
 
-          <Stack direction="row" alignItems="center" spacing={3}>
-            {availableLeagues.map((league) => {
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="center"
+            maxWidth={isMobile ? 200 : "auto"}
+            flexWrap="wrap"
+          >
+            {availableLeagues.map((league, index) => {
               return (
                 <LeagueButton
                   key={league.id}
@@ -94,7 +118,8 @@ export function StartScreen({ onStart }: StartScreenProps): React.JSX.Element {
                   src={league.src}
                   alt={league.alt}
                   selected={selectedLeague === league.id}
-                  onSelect={setSelectedLeague}
+                  onSelect={onSelectedLeagueChange}
+                  inverted={league.inverted}
                 />
               );
             })}
@@ -103,7 +128,7 @@ export function StartScreen({ onStart }: StartScreenProps): React.JSX.Element {
 
         <Box pt={2} />
 
-        <Button variant="contained" onClick={() => onStart(selectedLeague)}>
+        <Button variant="contained" onClick={onStart}>
           START THE GAME
         </Button>
       </Stack>
