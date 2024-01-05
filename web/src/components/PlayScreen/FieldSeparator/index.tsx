@@ -33,7 +33,7 @@ export function FieldSeparator(): React.JSX.Element {
         px={1}
         sx={{ backgroundColor: "white", borderRadius: 1, color: "#000" }}
       >
-        <Typography>vs</Typography>
+        <Typography color="inherit">vs</Typography>
       </Box>
       <Box
         flexGrow={1}

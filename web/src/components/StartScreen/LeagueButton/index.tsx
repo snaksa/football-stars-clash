@@ -24,10 +24,14 @@ export function LeagueButton({
     <Stack alignItems="center">
       <Box
         sx={{
-          backgroundColor: "#5089bf",
+          backgroundColor: theme.palette.primary.light,
           width: "100%",
           padding: 1,
-          border: `5px solid ${selected ? "#fff" : "#0f4275"}`,
+          border: `5px solid ${
+            selected
+              ? theme.palette.background.default
+              : theme.palette.primary.main
+          }`,
           borderRadius: 5,
           cursor: "pointer",
         }}

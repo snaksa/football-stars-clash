@@ -36,12 +36,17 @@ export function AnswerOptions({
       <Box
         width={isMobile ? "90%" : "70%"}
         p={2}
-        sx={{ backgroundColor: "#071e3c", borderRadius: 4 }}
+        sx={{ backgroundColor: theme.palette.primary.dark, borderRadius: 4 }}
       >
         <Typography variant={isMobile ? "caption" : "body1"} align="center">
           Does <b>{player2.name.toUpperCase()}</b> have a{" "}
-          <span style={{ color: "#0ed50e", fontWeight: "bold" }}>HIGHER</span>{" "}
-          or <span style={{ color: "red", fontWeight: "bold" }}>LOWER</span>{" "}
+          <span style={{ color: theme.palette.green.dark, fontWeight: "bold" }}>
+            HIGHER
+          </span>{" "}
+          or{" "}
+          <span style={{ color: theme.palette.red.main, fontWeight: "bold" }}>
+            LOWER
+          </span>{" "}
           market value than <b>{player1.name.toUpperCase()}</b>?
         </Typography>
       </Box>
@@ -49,7 +54,7 @@ export function AnswerOptions({
       <Button
         variant="contained"
         disabled={disabled}
-        sx={{ backgroundColor: "#0ed50e" }}
+        sx={{ backgroundColor: theme.palette.green.dark }}
       >
         <Stack
           direction="row"
@@ -65,7 +70,7 @@ export function AnswerOptions({
       <Button
         variant="contained"
         disabled={disabled}
-        sx={{ backgroundColor: "red" }}
+        sx={{ backgroundColor: theme.palette.red.main }}
         onClick={() => onAnswer(player1.id)}
       >
         <Stack direction="row" justifyContent="space-between" width="200px">

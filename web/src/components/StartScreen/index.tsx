@@ -40,7 +40,6 @@ export function StartScreen({ onStart }: StartScreenProps): React.JSX.Element {
         alignItems="center"
         spacing={isMobile ? 1 : 3}
         height="100%"
-        color="white"
         pt={isMobile ? 2 : 10}
       >
         <Stack
@@ -50,19 +49,29 @@ export function StartScreen({ onStart }: StartScreenProps): React.JSX.Element {
           spacing={2}
         >
           <ExpandCircleDownIcon
-            sx={{ fontSize: 40, color: "green", rotate: "180deg" }}
+            sx={{
+              fontSize: 40,
+              color: theme.palette.green?.main,
+              rotate: "180deg",
+            }}
           />
-          <Typography variant="h3" align="center">
-            Football Stars Clash
+          <Typography
+            variant="h3"
+            align="center"
+            sx={{ fontFamily: "'Playfair Display', serif" }}
+          >
+            FOOTBALL STARS CLASH
           </Typography>
-          <ExpandCircleDownIcon sx={{ fontSize: 40, color: "red" }} />
+          <ExpandCircleDownIcon
+            sx={{ fontSize: 40, color: theme.palette.red.main }}
+          />
         </Stack>
 
         <Stack alignItems="center" p={1}>
-          <Typography color="inherit" align="center">
+          <Typography align="center">
             {"Do you think you know every player's market value?"}
           </Typography>
-          <Typography color="inherit" align="center">
+          <Typography align="center">
             {"Then show us what you've got."}
           </Typography>
         </Stack>
@@ -74,11 +83,9 @@ export function StartScreen({ onStart }: StartScreenProps): React.JSX.Element {
           py={3}
           sx={{ border: "2px dashed white" }}
         >
-          <Typography color="inherit" variant="h5">
-            Choose a League
-          </Typography>
+          <Typography variant="h5">Choose a League</Typography>
 
-          <Stack direction="row" alignItems="center" color="white" spacing={3}>
+          <Stack direction="row" alignItems="center" spacing={3}>
             {availableLeagues.map((league) => {
               return (
                 <LeagueButton

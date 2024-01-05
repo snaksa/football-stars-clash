@@ -1,15 +1,6 @@
 import React, { PropsWithChildren } from "react";
-import MainWrapper from "@/components/MainWrapper";
-import {
-  Box,
-  Button,
-  Stack,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
-import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
-import { Game, Player } from "@/models";
+import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Player } from "@/models";
 import Image from "next/image";
 
 interface PlayerDetailsProps {

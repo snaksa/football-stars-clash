@@ -111,7 +111,7 @@ export function PlayScreen({
           alignItems="center"
           minHeight={isMobile ? "50%" : "auto"}
           sx={{
-            backgroundColor: "rgba(0, 0, 0, 0.5)",
+            backgroundColor: theme.palette.background.paper,
             width: isMobile ? "100%" : "50%",
             borderRadius: isMobile ? 0 : "20px 0 0 20px",
           }}
@@ -126,10 +126,10 @@ export function PlayScreen({
           sx={{
             backgroundColor:
               answerState === AnswerState.NEUTRAL
-                ? "rgba(0, 0, 0, 0.5)"
+                ? theme.palette.background.paper
                 : answerState === AnswerState.CORRECT
-                  ? "rgba(0, 255, 0, 0.5)"
-                  : "rgba(255, 0, 0, 0.5)",
+                  ? theme.palette.green.light
+                  : theme.palette.red.light,
             transition:
               answerState === AnswerState.NEUTRAL
                 ? "none"
