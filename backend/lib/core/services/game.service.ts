@@ -17,21 +17,21 @@ class GameService {
     return game
   }
 
-  public async create (): Promise<Game> {
-    const player1 = await this.playerService.getRandomPlayer()
-    let player2 = await this.playerService.getRandomPlayer()
+  public async create (leagueId: string): Promise<Game> {
+    const player1 = await this.playerService.getRandomPlayer(leagueId)
+    let player2 = await this.playerService.getRandomPlayer(leagueId)
     while (player1.id === player2.id || player1.parsedValue === player2.parsedValue) {
-      player2 = await this.playerService.getRandomPlayer()
+      player2 = await this.playerService.getRandomPlayer(leagueId)
     }
 
-    return await this.gameRepository.create(player1, player2)
+    return await this.gameRepository.create(leagueId, player1, player2)
   }
 
   public async generateNextRound (game: Game): Promise<Game> {
     const player1 = await this.playerService.getPlayer(game.round.player2.id)
-    let player2 = await this.playerService.getRandomPlayer()
+    let player2 = await this.playerService.getRandomPlayer(game.leagueId)
     while (player1.id === player2.id || player1.parsedValue === player2.parsedValue) {
-      player2 = await this.playerService.getRandomPlayer()
+      player2 = await this.playerService.getRandomPlayer(game.leagueId)
     }
 
     // update game round and score

@@ -22,7 +22,7 @@ const availableLeagues = [
     alt: "Premier League",
   },
   {
-    id: "la-liga",
+    id: "primera-division",
     src: "/la-liga-logo.png",
     alt: "La Liga",
   },

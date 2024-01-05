@@ -1,9 +1,12 @@
 import GameServiceFactory from '../../../../core/utils/factory/game-service.factory'
 
-export const handler = async (): Promise<any> => {
+export const handler = async (event: { body?: string }): Promise<any> => {
+  const body = (event.body != null) ? JSON.parse(event.body) : {}
+  const leagueId: string = body?.leagueId ?? ''
+
   const gameService = GameServiceFactory.createGameService()
 
-  const game = await gameService.create()
+  const game = await gameService.create(leagueId)
 
   return {
     statusCode: 200,

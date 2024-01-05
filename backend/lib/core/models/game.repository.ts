@@ -23,9 +23,10 @@ class GameRepository {
     return Game.fromDynamoDb(gameResponse.Item ?? {})
   }
 
-  public async create (player1: Player, player2: Player): Promise<Game> {
+  public async create (leagueId: string, player1: Player, player2: Player): Promise<Game> {
     const game = new Game(
       uuidv4(),
+      leagueId,
       GameStatus.ACTIVE,
       0,
       new GameRound(

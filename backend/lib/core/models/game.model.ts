@@ -14,6 +14,7 @@ export default class Game {
 
   constructor (
     public id: string,
+    public leagueId: string,
     public status: GameStatus,
     public score: number,
     public round: GameRound
@@ -28,6 +29,9 @@ export default class Game {
       },
       record_type: {
         S: Game.TYPE
+      },
+      leagueId: {
+        S: this.leagueId
       },
       status: {
         S: this.status
@@ -44,10 +48,11 @@ export default class Game {
   static fromDynamoDb (data: Record<string, AttributeValue>): Game {
     const id = data?.pk?.S?.replace(`${Game.TYPE}#`, '') ?? ''
     const status = data?.status?.S ?? ''
+    const leagueId = data?.leagueId?.S ?? ''
     const score = parseInt(data?.score?.N ?? '0')
     const round = ((data?.round?.M) != null) ? GameRound.fromDynamoDb(data?.round?.M ?? {}) : new GameRound(new Player(''), new Player(''), '')
 
-    return new Game(id, status as GameStatus, score, round)
+    return new Game(id, leagueId, status as GameStatus, score, round)
   }
 
   public isActive (): boolean {
@@ -57,6 +62,7 @@ export default class Game {
   public toDto = (): Record<string, any> => {
     return {
       id: this.id,
+      leagueId: this.leagueId,
       status: this.status,
       score: this.score,
       round: this.round.toDto(this.status === GameStatus.INACTIVE)

@@ -6,6 +6,7 @@ export const startGame = async (leagueId: string): Promise<Game | null> => {
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({ leagueId }),
   }).then((response) => response.json());
 
   return response?.data?.game;
