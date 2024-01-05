@@ -1,11 +1,11 @@
-"use client";
-import React from "react";
-import { Playfair_Display } from "next/font/google";
-import { ThemeProvider } from "@mui/material";
-import "./globals.css";
-import theme from "../theme/theme";
+'use client';
+import React from 'react';
+import { Playfair_Display } from 'next/font/google';
+import { ThemeProvider } from '@mui/material';
+import './globals.css';
+import theme from '../theme/theme';
 
-const font = Playfair_Display({ subsets: ["latin"] });
+const font = Playfair_Display({ subsets: ['latin'] });
 
 export default function RootLayout({
   children,

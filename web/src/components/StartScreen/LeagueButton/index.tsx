@@ -1,6 +1,6 @@
-import React from "react";
-import Image from "next/image";
-import { Box, Stack, useMediaQuery, useTheme } from "@mui/material";
+import React from 'react';
+import Image from 'next/image';
+import { Box, Stack, useMediaQuery, useTheme } from '@mui/material';
 
 interface LeagueButtonProps {
   id: string;
@@ -20,14 +20,14 @@ export function LeagueButton({
   inverted = false,
 }: LeagueButtonProps): React.JSX.Element {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
   return (
     <Stack alignItems="center" p={1}>
       <Box
         sx={{
           backgroundColor: theme.palette.primary.light,
-          width: "100%",
+          width: '100%',
           padding: 1,
           border: `5px solid ${
             selected
@@ -35,7 +35,7 @@ export function LeagueButton({
               : theme.palette.primary.main
           }`,
           borderRadius: 5,
-          cursor: "pointer",
+          cursor: 'pointer',
         }}
         onClick={() => onSelect(id)}
       >
@@ -46,8 +46,8 @@ export function LeagueButton({
           height={isMobile ? 40 : 60}
           style={{
             filter:
-              "grayscale(100%) contrast(1000%)" +
-              (inverted ? " invert(100%)" : ""),
+              'grayscale(100%) contrast(1000%)' +
+              (inverted ? ' invert(100%)' : ''),
           }}
         />
       </Box>

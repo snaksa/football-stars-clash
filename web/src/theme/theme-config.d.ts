@@ -1,6 +1,6 @@
-import "@material-ui/core/styles";
+import '@material-ui/core/styles';
 
-declare module "@mui/material/styles/createPalette" {
+declare module '@mui/material/styles/createPalette' {
   interface Palette {
     green: {
       main: string;

@@ -1,7 +1,7 @@
-import React, { PropsWithChildren } from "react";
-import { Box, Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { Player } from "@/models";
-import Image from "next/image";
+import React, { PropsWithChildren } from 'react';
+import { Box, Stack, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Player } from '@/models';
+import Image from 'next/image';
 
 interface PlayerDetailsProps {
   player: Player;
@@ -14,7 +14,7 @@ export function PlayerDetails({
   hideValue = false,
 }: PropsWithChildren<PlayerDetailsProps>): React.JSX.Element {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
   return (
     <Stack
@@ -24,7 +24,7 @@ export function PlayerDetails({
       spacing={isMobile ? 1 : 2}
     >
       <Stack
-        direction={isMobile ? "row" : "column"}
+        direction={isMobile ? 'row' : 'column'}
         color="white"
         alignItems="center"
         spacing={2}
@@ -34,12 +34,12 @@ export function PlayerDetails({
           alt="Player image"
           width={100}
           height={130}
-          style={{ border: "2px solid white" }}
+          style={{ border: '2px solid white' }}
         />
         <Stack
           spacing={isMobile ? 0 : 1}
           alignItems="start"
-          width={isMobile ? "150px" : "auto"}
+          width={isMobile ? '150px' : 'auto'}
         >
           <Typography color="inherit" variant="h5">
             {player.name}
@@ -64,15 +64,15 @@ export function PlayerDetails({
       {!hideValue && (
         <Stack
           alignItems="center"
-          justifyContent={isMobile ? "center" : "normal"}
+          justifyContent={isMobile ? 'center' : 'normal'}
           spacing={1}
           pt={isMobile ? 0 : 5}
-          height={isMobile ? "200px" : "250px"}
+          height={isMobile ? '200px' : '250px'}
         >
           <Box
             px={2}
             sx={{
-              borderBottom: "2px solid white",
+              borderBottom: '2px solid white',
             }}
           >
             <Typography variant="h6">MARKET VALUE</Typography>

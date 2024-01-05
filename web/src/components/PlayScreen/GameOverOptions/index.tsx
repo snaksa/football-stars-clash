@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, Stack, useTheme } from "@mui/material";
+import React from 'react';
+import { Button, Stack, useTheme } from '@mui/material';
 
 interface GameOverOptionsProps {
   onPlayAgainClick: () => void;

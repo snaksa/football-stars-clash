@@ -1,5 +1,5 @@
-import React from "react";
-import { Stack, CircularProgress } from "@mui/material";
+import React from 'react';
+import { Stack, CircularProgress } from '@mui/material';
 
 export function Loader(): React.JSX.Element {
   return (
@@ -8,8 +8,8 @@ export function Loader(): React.JSX.Element {
       justifyContent="center"
       alignItems="center"
       sx={{
-        border: "2px solid white",
-        borderRadius: "20px",
+        border: '2px solid white',
+        borderRadius: '20px',
       }}
     >
       <CircularProgress size={100} color="primary" />

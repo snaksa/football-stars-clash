@@ -1,15 +1,15 @@
-"use client";
-import React, { PropsWithChildren } from "react";
-import { Box, styled } from "@mui/material";
+'use client';
+import React, { PropsWithChildren } from 'react';
+import { Box, styled } from '@mui/material';
 
 const Wrapper = styled(Box)(({ theme }) => ({
-  position: "relative",
-  width: "100%",
-  height: "100%",
-  border: "2px solid white",
-  borderRadius: "20px",
+  position: 'relative',
+  width: '100%',
+  height: '100%',
+  border: '2px solid white',
+  borderRadius: '20px',
 
-  [theme.breakpoints.down("lg")]: {
+  [theme.breakpoints.down('lg')]: {
     borderRadius: 0,
   },
 }));

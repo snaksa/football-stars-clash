@@ -1,5 +1,5 @@
-import React from "react";
-import MainWrapper from "@/components/MainWrapper";
+import React from 'react';
+import MainWrapper from '@/components/MainWrapper';
 import {
   Box,
   Button,
@@ -7,9 +7,9 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-} from "@mui/material";
-import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
-import { LeagueButton } from "@/components/StartScreen/LeagueButton";
+} from '@mui/material';
+import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
+import { LeagueButton } from '@/components/StartScreen/LeagueButton';
 
 interface StartScreenProps {
   selectedLeague: string;
@@ -19,27 +19,27 @@ interface StartScreenProps {
 
 const availableLeagues = [
   {
-    id: "premier-league",
-    src: "/premier-league-logo.png",
-    alt: "Premier League",
+    id: 'premier-league',
+    src: '/premier-league-logo.png',
+    alt: 'Premier League',
     inverted: true,
   },
   {
-    id: "primera-division",
-    src: "/la-liga-logo.png",
-    alt: "La Liga",
+    id: 'primera-division',
+    src: '/la-liga-logo.png',
+    alt: 'La Liga',
     inverted: true,
   },
   {
-    id: "bundesliga",
-    src: "/bundesliga-logo.png",
-    alt: "Bundesliga",
+    id: 'bundesliga',
+    src: '/bundesliga-logo.png',
+    alt: 'Bundesliga',
     inverted: true,
   },
   {
-    id: "serie-a",
-    src: "/serie-a-logo.png",
-    alt: "Serie A",
+    id: 'serie-a',
+    src: '/serie-a-logo.png',
+    alt: 'Serie A',
     inverted: false,
   },
 ];
@@ -50,7 +50,7 @@ export function StartScreen({
   onStart,
 }: StartScreenProps): React.JSX.Element {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
   return (
     <MainWrapper>
@@ -61,7 +61,7 @@ export function StartScreen({
         pt={isMobile ? 2 : 10}
       >
         <Stack
-          direction={isMobile ? "column" : "row"}
+          direction={isMobile ? 'column' : 'row'}
           justifyContent="center"
           alignItems="center"
           spacing={2}
@@ -70,7 +70,7 @@ export function StartScreen({
             sx={{
               fontSize: 40,
               color: theme.palette.green?.main,
-              rotate: "180deg",
+              rotate: '180deg',
             }}
           />
           <Typography
@@ -99,7 +99,7 @@ export function StartScreen({
           spacing={2}
           px={8}
           py={3}
-          sx={{ border: "2px dashed white" }}
+          sx={{ border: '2px dashed white' }}
         >
           <Typography variant="h5">Choose a League</Typography>
 
@@ -107,7 +107,7 @@ export function StartScreen({
             direction="row"
             alignItems="center"
             justifyContent="center"
-            maxWidth={isMobile ? 200 : "auto"}
+            maxWidth={isMobile ? 200 : 'auto'}
             flexWrap="wrap"
           >
             {availableLeagues.map((league, index) => {

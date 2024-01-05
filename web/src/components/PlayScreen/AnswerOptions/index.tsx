@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   Box,
   Button,
@@ -6,9 +6,9 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-} from "@mui/material";
-import ExpandCircleDownIcon from "@mui/icons-material/ExpandCircleDown";
-import { Player } from "@/models";
+} from '@mui/material';
+import ExpandCircleDownIcon from '@mui/icons-material/ExpandCircleDown';
+import { Player } from '@/models';
 
 interface AnswerOptionsProps {
   player1: Player;
@@ -24,29 +24,42 @@ export function AnswerOptions({
   disabled,
 }: AnswerOptionsProps): React.JSX.Element {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
   return (
     <Stack
       alignItems="center"
       spacing={2}
-      height={isMobile ? "200px" : "250px"}
+      height={isMobile ? '200px' : '250px'}
       mt={isMobile ? 1 : 2}
     >
       <Box
-        width={isMobile ? "90%" : "70%"}
+        width={isMobile ? '90%' : '70%'}
         p={2}
-        sx={{ backgroundColor: theme.palette.primary.dark, borderRadius: 4 }}
+        sx={{
+          backgroundColor: theme.palette.primary.dark,
+          borderRadius: 4,
+        }}
       >
-        <Typography variant={isMobile ? "caption" : "body1"} align="center">
-          Does <b>{player2.name.toUpperCase()}</b> have a{" "}
-          <span style={{ color: theme.palette.green.dark, fontWeight: "bold" }}>
+        <Typography variant={isMobile ? 'caption' : 'body1'} align="center">
+          Does <b>{player2.name.toUpperCase()}</b> have a{' '}
+          <span
+            style={{
+              color: theme.palette.green.dark,
+              fontWeight: 'bold',
+            }}
+          >
             HIGHER
-          </span>{" "}
-          or{" "}
-          <span style={{ color: theme.palette.red.main, fontWeight: "bold" }}>
+          </span>{' '}
+          or{' '}
+          <span
+            style={{
+              color: theme.palette.red.main,
+              fontWeight: 'bold',
+            }}
+          >
             LOWER
-          </span>{" "}
+          </span>{' '}
           market value than <b>{player1.name.toUpperCase()}</b>?
         </Typography>
       </Box>
@@ -62,9 +75,9 @@ export function AnswerOptions({
           width="200px"
           onClick={() => onAnswer(player2.id)}
         >
-          <ExpandCircleDownIcon sx={{ rotate: "180deg" }} />
+          <ExpandCircleDownIcon sx={{ rotate: '180deg' }} />
           HIGHER
-          <ExpandCircleDownIcon sx={{ rotate: "180deg" }} />
+          <ExpandCircleDownIcon sx={{ rotate: '180deg' }} />
         </Stack>
       </Button>
       <Button

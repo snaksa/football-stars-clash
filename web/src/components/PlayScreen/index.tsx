@@ -1,13 +1,13 @@
-import React, { useCallback, useEffect } from "react";
-import MainWrapper from "@/components/MainWrapper";
-import { Stack, useMediaQuery, useTheme } from "@mui/material";
-import { AnswerState, Game, GameState } from "@/models";
-import { PlayerDetails } from "@/components/PlayScreen/PlayerDetails";
-import { FieldSeparator } from "@/components/PlayScreen/FieldSeparator";
-import { AnswerOptions } from "@/components/PlayScreen/AnswerOptions";
-import { checkAnswer, startGame } from "@/utils/api";
-import { GameOverOptions } from "@/components/PlayScreen/GameOverOptions";
-import { Loader } from "@/components/PlayScreen/Loader";
+import React, { useCallback, useEffect } from 'react';
+import MainWrapper from '@/components/MainWrapper';
+import { Stack, useMediaQuery, useTheme } from '@mui/material';
+import { AnswerState, Game, GameState } from '@/models';
+import { PlayerDetails } from '@/components/PlayScreen/PlayerDetails';
+import { FieldSeparator } from '@/components/PlayScreen/FieldSeparator';
+import { AnswerOptions } from '@/components/PlayScreen/AnswerOptions';
+import { checkAnswer, startGame } from '@/utils/api';
+import { GameOverOptions } from '@/components/PlayScreen/GameOverOptions';
+import { Loader } from '@/components/PlayScreen/Loader';
 
 interface PlayScreenProps {
   gameState: GameState;
@@ -21,11 +21,11 @@ export function PlayScreen({
   onGameStateChange,
 }: PlayScreenProps): React.JSX.Element {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
   const [game, setGame] = React.useState<Game | null>(null);
   const [answerState, setAnswerState] = React.useState<AnswerState>(
-    AnswerState.NEUTRAL,
+    AnswerState.NEUTRAL
   );
   const [checkingAnswer, setCheckingAnswer] = React.useState<boolean>(false);
   const [hideSecondPlayerValue, setHideSecondPlayerValue] =
@@ -65,7 +65,7 @@ export function PlayScreen({
       return;
     }
 
-    if (answerGameResponse.status === "INACTIVE") {
+    if (answerGameResponse.status === 'INACTIVE') {
       onGameStateChange(GameState.GAME_OVER);
       setAnswerState(AnswerState.INCORRECT);
       setGame(answerGameResponse);
@@ -87,7 +87,7 @@ export function PlayScreen({
     setHideSecondPlayerValue(false);
     setTimeout(() => {
       // if the answer was correct start a new round, otherwise keep showing the player 2 market value
-      if (answerGameResponse.status !== "INACTIVE") {
+      if (answerGameResponse.status !== 'INACTIVE') {
         setAnswerState(AnswerState.NEUTRAL);
         setGame(answerGameResponse);
         setHideSecondPlayerValue(true);
@@ -102,18 +102,18 @@ export function PlayScreen({
   return (
     <MainWrapper>
       <Stack
-        direction={isMobile ? "column" : "row"}
+        direction={isMobile ? 'column' : 'row'}
         justifyContent="space-between"
-        sx={{ height: "100%", color: "white" }}
+        sx={{ height: '100%', color: 'white' }}
       >
         <Stack
           justifyContent="center"
           alignItems="center"
-          minHeight={isMobile ? "50%" : "auto"}
+          minHeight={isMobile ? '50%' : 'auto'}
           sx={{
             backgroundColor: theme.palette.background.paper,
-            width: isMobile ? "100%" : "50%",
-            borderRadius: isMobile ? 0 : "20px 0 0 20px",
+            width: isMobile ? '100%' : '50%',
+            borderRadius: isMobile ? 0 : '20px 0 0 20px',
           }}
         >
           <PlayerDetails player={game.round.player1} />
@@ -122,7 +122,7 @@ export function PlayScreen({
         <Stack
           justifyContent="center"
           alignItems="center"
-          minHeight={isMobile ? "50%" : "auto"}
+          minHeight={isMobile ? '50%' : 'auto'}
           sx={{
             backgroundColor:
               answerState === AnswerState.NEUTRAL
@@ -132,10 +132,10 @@ export function PlayScreen({
                   : theme.palette.red.light,
             transition:
               answerState === AnswerState.NEUTRAL
-                ? "none"
-                : "background-color 1000ms linear",
-            width: isMobile ? "100%" : "50%",
-            borderRadius: isMobile ? 0 : "0 20px 20px 0",
+                ? 'none'
+                : 'background-color 1000ms linear',
+            width: isMobile ? '100%' : '50%',
+            borderRadius: isMobile ? 0 : '0 20px 20px 0',
           }}
         >
           <PlayerDetails

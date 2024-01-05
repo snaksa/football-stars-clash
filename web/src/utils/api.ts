@@ -1,10 +1,10 @@
-import { Game } from "@/models";
+import { Game } from '@/models';
 
 export const startGame = async (leagueId: string): Promise<Game | null> => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/games`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ leagueId }),
   }).then((response) => response.json());
@@ -14,17 +14,17 @@ export const startGame = async (leagueId: string): Promise<Game | null> => {
 
 export const checkAnswer = async (
   gameId: string,
-  answer: string,
+  answer: string
 ): Promise<Game | null> => {
   const response = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/games/${gameId}/answer`,
     {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ answer }),
-    },
+    }
   ).then((response) => response.json());
 
   return response?.data?.game;

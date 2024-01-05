@@ -19,13 +19,13 @@ export interface Game {
 }
 
 export enum GameState {
-  START = "start",
-  PLAYING = "playing",
-  GAME_OVER = "game-over",
+  START = 'start',
+  PLAYING = 'playing',
+  GAME_OVER = 'game-over',
 }
 
 export enum AnswerState {
-  NEUTRAL = "NEUTRAL",
-  CORRECT = "CORRECT",
-  INCORRECT = "INCORRECT",
+  NEUTRAL = 'NEUTRAL',
+  CORRECT = 'CORRECT',
+  INCORRECT = 'INCORRECT',
 }
