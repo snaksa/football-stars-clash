@@ -19,7 +19,8 @@ export class StorageStack extends Stack {
       tableName: FOOTBALL_STARS_CLASH_DATA_TABLE,
       billingMode: BillingMode.PAY_PER_REQUEST,
       removalPolicy: RemovalPolicy.DESTROY,
-      partitionKey: { name: 'pk', type: AttributeType.STRING }
+      partitionKey: { name: 'pk', type: AttributeType.STRING },
+      timeToLiveAttribute: 'expire_at'
       // sortKey: { name: "sk", type: AttributeType.STRING },
     })
 
