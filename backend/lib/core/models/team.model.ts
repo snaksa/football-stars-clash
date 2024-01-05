@@ -1,10 +1,10 @@
-import type Player from './player.model'
-import { type AttributeValue } from '@aws-sdk/client-dynamodb'
+import type Player from './player.model';
+import { type AttributeValue } from '@aws-sdk/client-dynamodb';
 
 export default class Team {
-  static readonly TYPE = 'TEAM'
+  static readonly TYPE = 'TEAM';
 
-  public pk: string
+  public pk: string;
 
   constructor (
     public id: string,
@@ -14,7 +14,7 @@ export default class Team {
     public playersIds: string[] = [],
     public players: Player[] = []
   ) {
-    this.pk = `${Team.TYPE}#${this.id}`
+    this.pk = `${Team.TYPE}#${this.id}`;
   }
 
   public toDynamoDb (): Record<string, AttributeValue> {
@@ -37,21 +37,21 @@ export default class Team {
       playersIds: {
         SS: this.playersIds
       }
-    }
+    };
   }
 
   static fromDynamoDb (data: Record<string, AttributeValue>): Team {
-    const id = data?.pk?.S?.replace(`${Team.TYPE}#`, '') ?? ''
-    const name = data?.name?.S ?? ''
-    const logo = data?.logo?.S ?? ''
-    const url = data?.url?.S ?? ''
-    const playersIds = data?.playersIds?.SS ?? []
+    const id = data?.pk?.S?.replace(`${Team.TYPE}#`, '') ?? '';
+    const name = data?.name?.S ?? '';
+    const logo = data?.logo?.S ?? '';
+    const url = data?.url?.S ?? '';
+    const playersIds = data?.playersIds?.SS ?? [];
 
-    return new Team(id, name, url, logo, playersIds)
+    return new Team(id, name, url, logo, playersIds);
   }
 
   public getRandomPlayer (): string {
-    const randomIndex = Math.floor(Math.random() * this.playersIds.length)
-    return this.playersIds[randomIndex]
+    const randomIndex = Math.floor(Math.random() * this.playersIds.length);
+    return this.playersIds[randomIndex];
   }
 }

@@ -13,5 +13,8 @@ module.exports = {
         project: ['./tsconfig.json']
     },
     "rules": {
+        "semi": ["error", "always"],
+        "@typescript-eslint/semi": ["off"],
+        "quotes": ["error", "single"],
     }
 }

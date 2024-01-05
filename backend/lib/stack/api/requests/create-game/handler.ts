@@ -1,12 +1,12 @@
-import GameServiceFactory from '../../../../core/utils/factory/game-service.factory'
+import GameServiceFactory from '../../../../core/utils/factory/game-service.factory';
 
 export const handler = async (event: { body?: string }): Promise<any> => {
-  const body = (event.body != null) ? JSON.parse(event.body) : {}
-  const leagueId: string = body?.leagueId ?? ''
+  const body = (event.body != null) ? JSON.parse(event.body) : {};
+  const leagueId: string = body?.leagueId ?? '';
 
-  const gameService = GameServiceFactory.createGameService()
+  const gameService = GameServiceFactory.createGameService();
 
-  const game = await gameService.create(leagueId)
+  const game = await gameService.create(leagueId);
 
   return {
     statusCode: 200,
@@ -20,5 +20,5 @@ export const handler = async (event: { body?: string }): Promise<any> => {
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'OPTIONS,GET,POST,PUT,DELETE'
     }
-  }
-}
+  };
+};

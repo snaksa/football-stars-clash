@@ -1,9 +1,9 @@
-import { v4 as uuidv4 } from 'uuid'
-import { FOOTBALL_STARS_CLASH_DATA_TABLE } from '../utils/constants'
-import Game, { GameStatus } from './game.model'
-import type Player from './player.model'
-import GameRound from './game-round.model'
-import type DatabaseService from '../services/database.service'
+import { v4 as uuidv4 } from 'uuid';
+import { FOOTBALL_STARS_CLASH_DATA_TABLE } from '../utils/constants';
+import Game, { GameStatus } from './game.model';
+import type Player from './player.model';
+import GameRound from './game-round.model';
+import type DatabaseService from '../services/database.service';
 
 class GameRepository {
   constructor (public databaseService: DatabaseService) {}
@@ -18,9 +18,9 @@ class GameRepository {
             S: `${Game.TYPE}#${id}`
           }
         }
-      })
+      });
 
-    return Game.fromDynamoDb(gameResponse.Item ?? {})
+    return Game.fromDynamoDb(gameResponse.Item ?? {});
   }
 
   public async create (leagueId: string, player1: Player, player2: Player): Promise<Game> {
@@ -34,31 +34,31 @@ class GameRepository {
         player2,
         player1.parsedValue > player2.parsedValue ? player1.id : player2.id
       )
-    )
+    );
     const putItemInput = {
       TableName: FOOTBALL_STARS_CLASH_DATA_TABLE,
       Item: game.toDynamoDb()
-    }
+    };
 
     await this.databaseService
       .getConnection()
-      .putItem(putItemInput)
+      .putItem(putItemInput);
 
-    return game
+    return game;
   }
 
   public async update (game: Game): Promise<Game> {
     const putItemInput = {
       TableName: FOOTBALL_STARS_CLASH_DATA_TABLE,
       Item: game.toDynamoDb()
-    }
+    };
 
     await this.databaseService
       .getConnection()
-      .putItem(putItemInput)
+      .putItem(putItemInput);
 
-    return game
+    return game;
   }
 }
 
-export default GameRepository
+export default GameRepository;

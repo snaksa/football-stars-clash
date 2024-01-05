@@ -1,10 +1,10 @@
-import { Stack, type StackProps } from 'aws-cdk-lib'
-import { type Construct } from 'constructs'
-import { type Table } from 'aws-cdk-lib/aws-dynamodb'
-import { Cors, LambdaIntegration, RestApi } from 'aws-cdk-lib/aws-apigateway'
-import { GetGameLambda } from './requests/get-game'
-import { CreateGameLambda } from './requests/create-game/index'
-import { AnswerGameLambda } from './requests/answer-game/index'
+import { Stack, type StackProps } from 'aws-cdk-lib';
+import { type Construct } from 'constructs';
+import { type Table } from 'aws-cdk-lib/aws-dynamodb';
+import { Cors, LambdaIntegration, RestApi } from 'aws-cdk-lib/aws-apigateway';
+import { GetGameLambda } from './requests/get-game';
+import { CreateGameLambda } from './requests/create-game/index';
+import { AnswerGameLambda } from './requests/answer-game/index';
 
 interface ApiStackProps extends StackProps {
   dbStore: Table
@@ -12,16 +12,16 @@ interface ApiStackProps extends StackProps {
 
 export class ApiStack extends Stack {
   constructor (scope: Construct, id: string, props: ApiStackProps) {
-    super(scope, id, props)
+    super(scope, id, props);
 
-    const { dbStore } = props
+    const { dbStore } = props;
 
     const apiGateway = new RestApi(this, 'FootballStarsClash-RestApi', {
       deploy: true,
       deployOptions: {
         stageName: 'v1'
       }
-    })
+    });
 
     const gamesResource = apiGateway.root.addResource('games', {
       defaultCorsPreflightOptions: {
@@ -30,7 +30,7 @@ export class ApiStack extends Stack {
         allowHeaders: ['*'],
         disableCache: true
       }
-    })
+    });
 
     gamesResource.addMethod(
       'POST',
@@ -39,9 +39,9 @@ export class ApiStack extends Stack {
           dbStore
         })
       )
-    )
+    );
 
-    const singleGameResource = gamesResource.addResource('{id}')
+    const singleGameResource = gamesResource.addResource('{id}');
 
     singleGameResource.addMethod(
       'GET',
@@ -50,9 +50,9 @@ export class ApiStack extends Stack {
           dbStore
         })
       )
-    )
+    );
 
-    const answerResource = singleGameResource.addResource('answer')
+    const answerResource = singleGameResource.addResource('answer');
     answerResource.addMethod(
       'POST',
       new LambdaIntegration(
@@ -60,6 +60,6 @@ export class ApiStack extends Stack {
           dbStore
         })
       )
-    )
+    );
   }
 }

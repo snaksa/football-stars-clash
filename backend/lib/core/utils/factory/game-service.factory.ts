@@ -1,7 +1,7 @@
-import GameService from '../../services/game.service'
-import GameRepository from '../../models/game.repository'
-import DatabaseService from '../../services/database.service'
-import PlayerServiceFactory from './player-service.factory'
+import GameService from '../../services/game.service';
+import GameRepository from '../../models/game.repository';
+import DatabaseService from '../../services/database.service';
+import PlayerServiceFactory from './player-service.factory';
 
 // eslint-disable-next-line @typescript-eslint/no-extraneous-class
 class GameServiceFactory {
@@ -9,8 +9,8 @@ class GameServiceFactory {
     return new GameService(
       new GameRepository(DatabaseService.getInstance()),
       PlayerServiceFactory.createPlayerService()
-    )
+    );
   }
 }
 
-export default GameServiceFactory
+export default GameServiceFactory;

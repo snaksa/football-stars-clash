@@ -1,20 +1,20 @@
-import GameServiceFactory from '../../../../core/utils/factory/game-service.factory'
+import GameServiceFactory from '../../../../core/utils/factory/game-service.factory';
 
 export const handler = async (event: { pathParameters: { id: string }, body?: string }): Promise<any> => {
-  const gameId: string = event.pathParameters?.id ?? ''
+  const gameId: string = event.pathParameters?.id ?? '';
 
-  const body = (event.body != null) ? JSON.parse(event.body) : {}
-  const answer: string = body?.answer ?? ''
+  const body = (event.body != null) ? JSON.parse(event.body) : {};
+  const answer: string = body?.answer ?? '';
 
-  const gameService = GameServiceFactory.createGameService()
+  const gameService = GameServiceFactory.createGameService();
 
-  let game = await gameService.getGame(gameId)
+  let game = await gameService.getGame(gameId);
 
   if (game.isActive()) {
     if (game.round.isAnswerCorrect(answer)) {
-      game = await gameService.generateNextRound(game)
+      game = await gameService.generateNextRound(game);
     } else {
-      game = await gameService.endGame(game)
+      game = await gameService.endGame(game);
     }
   }
 
@@ -30,5 +30,5 @@ export const handler = async (event: { pathParameters: { id: string }, body?: st
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'OPTIONS,GET,POST,PUT,DELETE'
     }
-  }
-}
+  };
+};

@@ -1,11 +1,11 @@
-import { Stack, type StackProps } from 'aws-cdk-lib'
-import { type Construct } from 'constructs'
+import { Stack, type StackProps } from 'aws-cdk-lib';
+import { type Construct } from 'constructs';
 import {
   type Table
-} from 'aws-cdk-lib/aws-dynamodb'
-import { ScraperLambda } from './lambda/scraper'
-import { Rule, Schedule } from 'aws-cdk-lib/aws-events'
-import { LambdaFunction } from 'aws-cdk-lib/aws-events-targets'
+} from 'aws-cdk-lib/aws-dynamodb';
+import { ScraperLambda } from './lambda/scraper';
+import { Rule, Schedule } from 'aws-cdk-lib/aws-events';
+import { LambdaFunction } from 'aws-cdk-lib/aws-events-targets';
 
 interface ScraperStackProps extends StackProps {
   dbStore: Table
@@ -13,13 +13,13 @@ interface ScraperStackProps extends StackProps {
 
 export class ScraperStack extends Stack {
   constructor (scope: Construct, id: string, props: ScraperStackProps) {
-    super(scope, id, props)
+    super(scope, id, props);
 
-    const { dbStore } = props
+    const { dbStore } = props;
 
     const scraperFunc = new ScraperLambda(this, 'ScraperLambdaProps', {
       dbStore
-    })
+    });
 
     // eslint-disable-next-line no-new
     new Rule(this, 'FootballStarsClash-ScheduledExecutionRule', {
@@ -32,6 +32,6 @@ export class ScraperStack extends Stack {
         year: '*'
       }),
       targets: [new LambdaFunction(scraperFunc)]
-    })
+    });
   }
 }

@@ -1,6 +1,6 @@
-import Player from './player.model'
-import { FOOTBALL_STARS_CLASH_DATA_TABLE } from '../utils/constants'
-import type DatabaseService from '../services/database.service'
+import Player from './player.model';
+import { FOOTBALL_STARS_CLASH_DATA_TABLE } from '../utils/constants';
+import type DatabaseService from '../services/database.service';
 
 class PlayerRepository {
   constructor (public databaseService: DatabaseService) {}
@@ -15,10 +15,10 @@ class PlayerRepository {
             S: `${Player.TYPE}#${id}`
           }
         }
-      })
+      });
 
-    return Player.fromDynamoDb(teamResponse.Item ?? {})
+    return Player.fromDynamoDb(teamResponse.Item ?? {});
   }
 }
 
-export default PlayerRepository
+export default PlayerRepository;

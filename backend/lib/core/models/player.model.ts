@@ -1,10 +1,10 @@
-import { type AttributeValue } from '@aws-sdk/client-dynamodb'
+import { type AttributeValue } from '@aws-sdk/client-dynamodb';
 
 export default class Player {
-  static readonly TYPE = 'PLAYER'
+  static readonly TYPE = 'PLAYER';
 
-  public pk: string
-  public parsedValue: number
+  public pk: string;
+  public parsedValue: number;
 
   constructor (
     public id: string,
@@ -16,8 +16,8 @@ export default class Player {
     public teamName: string = '',
     public teamLogo: string = ''
   ) {
-    this.pk = `${Player.TYPE}#${this.id}`
-    this.parsedValue = this.parseValue(value)
+    this.pk = `${Player.TYPE}#${this.id}`;
+    this.parsedValue = this.parseValue(value);
   }
 
   public toDynamoDb (): Record<string, AttributeValue> {
@@ -49,26 +49,26 @@ export default class Player {
       teamLogo: {
         S: this.teamLogo
       }
-    }
+    };
   }
 
   static fromDynamoDb (data: Record<string, AttributeValue>): Player {
-    const id = data?.pk?.S?.replace(`${Player.TYPE}#`, '') ?? ''
-    const name = data?.name?.S ?? ''
-    const position = data?.position?.S ?? ''
-    const image = data?.image?.S ?? ''
-    const value = data?.value?.S ?? ''
-    const url = data?.url?.S ?? ''
-    const teamName = data?.teamName?.S ?? ''
-    const teamLogo = data?.teamLogo?.S ?? ''
+    const id = data?.pk?.S?.replace(`${Player.TYPE}#`, '') ?? '';
+    const name = data?.name?.S ?? '';
+    const position = data?.position?.S ?? '';
+    const image = data?.image?.S ?? '';
+    const value = data?.value?.S ?? '';
+    const url = data?.url?.S ?? '';
+    const teamName = data?.teamName?.S ?? '';
+    const teamLogo = data?.teamLogo?.S ?? '';
 
-    return new Player(id, name, position, image, value, url, teamName, teamLogo)
+    return new Player(id, name, position, image, value, url, teamName, teamLogo);
   }
 
   private parseValue (value: string): number {
-    const end = value[value.length - 1]
-    const multiplier = end === 'm' ? 1000000 : end === 'k' ? 1000 : 1
-    return parseInt(value.replace('€', '')) * multiplier
+    const end = value[value.length - 1];
+    const multiplier = end === 'm' ? 1000000 : end === 'k' ? 1000 : 1;
+    return parseInt(value.replace('€', '')) * multiplier;
   }
 
   public toDto = (includeValue: boolean = false): Record<string, any> => {
@@ -80,6 +80,6 @@ export default class Player {
       teamName: this.teamName,
       teamLogo: this.teamLogo,
       ...(includeValue ? { value: this.value } : {})
-    }
-  }
+    };
+  };
 }

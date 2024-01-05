@@ -1,19 +1,19 @@
-import { RemovalPolicy, Stack, type StackProps } from 'aws-cdk-lib'
-import { type Construct } from 'constructs'
+import { RemovalPolicy, Stack, type StackProps } from 'aws-cdk-lib';
+import { type Construct } from 'constructs';
 import {
   BillingMode,
   Table,
   AttributeType
-} from 'aws-cdk-lib/aws-dynamodb'
+} from 'aws-cdk-lib/aws-dynamodb';
 import {
   FOOTBALL_STARS_CLASH_DATA_TABLE
-} from '../../core/utils/constants'
+} from '../../core/utils/constants';
 
 export class StorageStack extends Stack {
-  public dataTable: Table
+  public dataTable: Table;
 
   constructor (scope: Construct, id: string, props?: StackProps) {
-    super(scope, id, props)
+    super(scope, id, props);
 
     this.dataTable = new Table(this, FOOTBALL_STARS_CLASH_DATA_TABLE, {
       tableName: FOOTBALL_STARS_CLASH_DATA_TABLE,
@@ -22,7 +22,7 @@ export class StorageStack extends Stack {
       partitionKey: { name: 'pk', type: AttributeType.STRING },
       timeToLiveAttribute: 'expire_at'
       // sortKey: { name: "sk", type: AttributeType.STRING },
-    })
+    });
 
     // this.dbStore.addGlobalSecondaryIndex({
     //   indexName: DB_STORE_CATEGORIES_GSI,

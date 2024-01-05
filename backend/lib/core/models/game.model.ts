@@ -1,6 +1,6 @@
-import GameRound from './game-round.model'
-import { type AttributeValue } from '@aws-sdk/client-dynamodb'
-import Player from './player.model'
+import GameRound from './game-round.model';
+import { type AttributeValue } from '@aws-sdk/client-dynamodb';
+import Player from './player.model';
 
 export enum GameStatus {
   ACTIVE = 'ACTIVE',
@@ -8,9 +8,9 @@ export enum GameStatus {
 }
 
 export default class Game {
-  static readonly TYPE = 'GAME'
+  static readonly TYPE = 'GAME';
 
-  public pk: string
+  public pk: string;
 
   constructor (
     public id: string,
@@ -19,7 +19,7 @@ export default class Game {
     public score: number,
     public round: GameRound
   ) {
-    this.pk = `${Game.TYPE}#${this.id}`
+    this.pk = `${Game.TYPE}#${this.id}`;
   }
 
   public toDynamoDb (): Record<string, AttributeValue> {
@@ -42,21 +42,21 @@ export default class Game {
       round: {
         M: this.round.toDynamoDb()
       }
-    }
+    };
   }
 
   static fromDynamoDb (data: Record<string, AttributeValue>): Game {
-    const id = data?.pk?.S?.replace(`${Game.TYPE}#`, '') ?? ''
-    const status = data?.status?.S ?? ''
-    const leagueId = data?.leagueId?.S ?? ''
-    const score = parseInt(data?.score?.N ?? '0')
-    const round = ((data?.round?.M) != null) ? GameRound.fromDynamoDb(data?.round?.M ?? {}) : new GameRound(new Player(''), new Player(''), '')
+    const id = data?.pk?.S?.replace(`${Game.TYPE}#`, '') ?? '';
+    const status = data?.status?.S ?? '';
+    const leagueId = data?.leagueId?.S ?? '';
+    const score = parseInt(data?.score?.N ?? '0');
+    const round = ((data?.round?.M) != null) ? GameRound.fromDynamoDb(data?.round?.M ?? {}) : new GameRound(new Player(''), new Player(''), '');
 
-    return new Game(id, leagueId, status as GameStatus, score, round)
+    return new Game(id, leagueId, status as GameStatus, score, round);
   }
 
   public isActive (): boolean {
-    return this.status === GameStatus.ACTIVE
+    return this.status === GameStatus.ACTIVE;
   }
 
   public toDto = (): Record<string, any> => {
@@ -66,6 +66,6 @@ export default class Game {
       status: this.status,
       score: this.score,
       round: this.round.toDto(this.status === GameStatus.INACTIVE)
-    }
-  }
+    };
+  };
 }

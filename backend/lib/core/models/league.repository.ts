@@ -1,6 +1,6 @@
-import League from './league.model'
-import { FOOTBALL_STARS_CLASH_DATA_TABLE } from '../utils/constants'
-import type DatabaseService from '../services/database.service'
+import League from './league.model';
+import { FOOTBALL_STARS_CLASH_DATA_TABLE } from '../utils/constants';
+import type DatabaseService from '../services/database.service';
 
 class LeagueRepository {
   constructor (public databaseService: DatabaseService) {
@@ -16,10 +16,10 @@ class LeagueRepository {
             S: `${League.TYPE}#${id}`
           }
         }
-      })
+      });
 
-    return League.fromDynamoDb(leagueResponse.Item ?? {})
+    return League.fromDynamoDb(leagueResponse.Item ?? {});
   }
 }
 
-export default LeagueRepository
+export default LeagueRepository;
